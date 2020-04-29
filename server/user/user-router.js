@@ -20,7 +20,7 @@ router.get("/", (req, res, next) => {
 
 router.post('/', async(req,res) => {
   console.log(req.body);
-	/*const users = new User ({
+	const users = new User ({
  name : req.body.name,
  id : req.body.id,
  email : req.body.email,
@@ -40,7 +40,7 @@ router.post('/', async(req,res) => {
 	 res.status(500).json({
 	 	error: err
 	   });
-    });*/
+    });
 });
 
 // create a new user
