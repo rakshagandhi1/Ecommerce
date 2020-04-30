@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import  {createUser} from './ApiCalls.js';
 
 class SignUpForm extends Component {
     constructor() {
         super();
 
         this.state = {
+            id: '', 
             email: '',
             password: '',
             name: '',
@@ -22,17 +24,51 @@ class SignUpForm extends Component {
        });
     }
 
-    handleSubmit=(e)=> {
+  /*  handleSubmit=(e)=> {
         e.preventDefault();
+         
+        const data = {name:this.state.name, email:this.state.email , password:this.state.password, id: this.state.id, number: this.state.number}
 
+    fetch('http://localhost:3000/users', { method: 'POST', 
+
+    body: JSON.stringify(data), // data can be `string` or {object}!
+
+    headers:{ 'Content-Type': 'application/json',
+              'Accept': 'application/json'} })
+
+    .then(res => res.json())
+
+    .catch(error => console.error('Error:', error))
+
+    .then(response => console.log('Success:', response));
+   }*/
+/*
         console.log('The form was submitted with the following data:');
-        console.log(this.state);
+        console.log(this.state);*/
+
+    onCreateUser = async() => {
+      var UserData = {
+        //this.state;
+        "name" : this.state.name,
+        "id" : this.state.id,
+        "email" : this.state.email,
+        "number" : this.state.number,
+        "password" : this.state.password
+        };
+
+      await createUser(UserData);
+      console.log(UserData);
+      alert('the data is submit');
+      }
+
+    componentDidMount() {
+      this.onCreateUser();
     }
 
     render() {
         return (
         <div className="FormCenter">
-            <form onSubmit={this.handleSubmit} className="FormFields">
+            <form className="FormFields">
               <div className="FormField">
                 <label className="FormField__Label" htmlFor="name">Your Name</label>
                 <input type="text" id="name" className="FormField__Input" placeholder="Enter your full name" name="name" value={this.state.name} onChange={this.handleChange} />
@@ -57,7 +93,7 @@ class SignUpForm extends Component {
               </div>
 
               <div className="FormField">
-                  <button className="FormField__Button mr-20">Sign Up</button> <Link to="/sign-in" className="FormField__Link">I'm already member</Link>
+                  <button onClick={this.onCreateUser} className="FormField__Button mr-20">Sign Up</button> <Link to="/sign-in" className="FormField__Link">I'm already member</Link>
               </div>
             </form>
           </div>

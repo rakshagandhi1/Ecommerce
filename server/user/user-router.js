@@ -31,7 +31,7 @@ router.post('/', async(req,res) => {
 	.then(result => {
 		console.log(result);
 		res.status(201).json({
-			message: 'handling post requests to /user',
+			//message: 'handling post requests to /user',
 			createsUser: users
         });
 	})
