@@ -13,7 +13,7 @@ export async function getAllUsers() {
       
 }
 
-export async function createUser(createUserData) {
+export async function createsUser(createUserData) {
     try { 
         let res = await fetch("http://localhost:3000/users", {
             method: 'POST',

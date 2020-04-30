@@ -22,7 +22,6 @@ router.post('/', async(req,res) => {
   console.log(req.body);
 	const users = new User ({
  name : req.body.name,
- id : req.body.id,
  email : req.body.email,
  number : req.body.number,
  password : req.body.password
