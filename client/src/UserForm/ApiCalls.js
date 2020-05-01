@@ -1,6 +1,6 @@
 export async function getAllUsers() {
     try {
-        let res = await fetch("http://localhost:3000/users");
+        let res = await fetch("http://localhost:4000/users");
         res = await res.json();
         console.log('res', res);
         const users = res.users;
@@ -15,7 +15,7 @@ export async function getAllUsers() {
 
 export async function createUser(createUserData) {
     try { 
-        let res = await fetch("http://localhost:3000/users", {
+        let res = await fetch("http://localhost:4000/users", {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

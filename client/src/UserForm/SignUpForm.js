@@ -44,7 +44,8 @@ class SignUpForm extends Component {
         console.log('The form was submitted with the following data:');
         console.log(this.state);*/
 
-    onCreateUser = async() => {
+    onCreateUser = async(e) => {
+      e.preventDefault();
       var userData = {
         //this.state;
         "name" : this.state.name,
@@ -64,7 +65,7 @@ class SignUpForm extends Component {
     render() {
         return (
         <div className="FormCenter">
-            <form className="FormFields">
+            <form onSubmit={this.onCreateUser} className="FormFields">
               <div className="FormField">
                 <label className="FormField__Label" htmlFor="name">Your Name</label>
                 <input type="text" id="name" className="FormField__Input" placeholder="Enter your full name" name="name" value={this.state.name} onChange={this.handleChange} />
@@ -89,7 +90,7 @@ class SignUpForm extends Component {
               </div>
 
               <div className="FormField">
-                  <button onClick={this.onCreateUser} className="FormField__Button mr-20">Sign Up</button> <Link to="/sign-in" className="FormField__Link">I'm already member</Link>
+                  <button className="FormField__Button mr-20">Sign Up</button> <Link to="/sign-in" className="FormField__Link">I'm already member</Link>
               </div>
             </form>
           </div>
