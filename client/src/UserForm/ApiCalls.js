@@ -13,7 +13,7 @@ export async function getAllUsers() {
       
 }
 
-export async function createsUser(createUserData) {
+export async function createUser(createUserData) {
     try { 
         let res = await fetch("http://localhost:3000/users", {
             method: 'POST',
@@ -25,6 +25,8 @@ export async function createsUser(createUserData) {
             body: JSON.stringify(createUserData)
         });
         res = await res.json();
+        const userinfo = res.name;
+        return userinfo;
     } catch(error) {
         console.log('create user error', error);
         return null;

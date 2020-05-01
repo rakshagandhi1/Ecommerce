@@ -1,9 +1,35 @@
-const express = require('express');
+var express = require('express');
 // Initialize express router
-const router = express.Router();
-const User = require('./user-model.js');
+var router = express.Router();
+var {fetchUsers,createUser} = require('./user-helper.js');
 
-router.get("/", (req, res, next) => {
+// get all users
+
+router.get('/', async function(request,response) {
+  try {
+    var users = await fetchUsers();
+    return response.status(200).send({users:users});
+  }
+  catch(error) {
+    return response.status(500).send({error: 'something went wrong'});
+  }
+});
+
+// create user
+
+router.post('/', async function(request,response) {
+  try {
+    var userinfo = await createUser(request.body);
+    return response.status(200).send({userinfo:userinfo});
+  }
+  catch(error) {
+    console.log(error);
+    return response.status(500).send({error: 'something went wrong'});
+  }
+});
+
+
+/*router.get("/", (req, res, next) => {
   User.find()
     .exec()
     .then(docs => {
@@ -40,7 +66,7 @@ router.post('/', async(req,res) => {
 	 	error: err
 	   });
     });
-});
+});*/
 
 // create a new user
 /*router.post('/', async (req, res) => {

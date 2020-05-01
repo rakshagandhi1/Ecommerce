@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import  {createsUser} from './ApiCalls.js';
+import  {createUser} from './ApiCalls.js';
 
 class SignUpForm extends Component {
-    constructor() {
-        super();
-
+    constructor(props) {
+        super(props);
         this.state = {
             email: '',
             password: '',
@@ -46,7 +45,7 @@ class SignUpForm extends Component {
         console.log(this.state);*/
 
     onCreateUser = async() => {
-      var UserData = {
+      var userData = {
         //this.state;
         "name" : this.state.name,
         "email" : this.state.email,
@@ -54,9 +53,8 @@ class SignUpForm extends Component {
         "password" : this.state.password
         };
 
-      await createsUser(UserData);
-      console.log(UserData);
-      alert('the data is submit');
+      await createUser(userData);
+      console.log(userData);
       }
 
     /*componentDidMount() {
