@@ -33,3 +33,25 @@ export async function createUser(createUserData) {
     }
         
 }
+
+export async function loginUser(loginData) {
+   try {
+     let resu = await fetch("http://localhost:4000/users/login", {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'content-type': 'application/json',
+            },
+            mode: "cors",
+            body: JSON.stringify(loginData)
+     });
+     resu = await resu.json();
+     console.log('resu', resu);
+     const logininfo = resu.logininfo;
+     return logininfo;
+   }
+   catch(error) {
+    console.log('wrong data', error);
+    return [];
+   }
+}

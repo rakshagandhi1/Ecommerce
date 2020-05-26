@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import  {loginUser} from './ApiCalls.js';
 
 class SignInForm extends Component {
     constructor(props) {
@@ -21,18 +22,38 @@ class SignInForm extends Component {
         [name] : value
        });
     }
-
+/*
     handleSubmit= (e) => {
         e.preventDefault();
 
         console.log('The form was submitted with the following data:');
         console.log(this.state);
+    }*/
+
+     onLoginUser= async(e) => {
+        e.preventDefault();
+        var loginData = {
+          "email": this.state.email,
+          "password": this.state.password
+        }
+        await loginUser(loginData).then(res => {
+          if(res) {
+            console.log('successfully login');
+            alert('successfully login');
+          }
+          else {
+            alert('failed to login!!');
+          }
+        })
+        console.log('The form was submitted with the following data:');
+        console.log(loginData);
     }
+
 
     render() {
         return (
         <div className="FormCenter">
-            <form className="FormFields" onSubmit={this.handleSubmit}>
+            <form className="FormFields" onSubmit={this.onLoginUser}>
             <div className="FormField">
                 <label className="FormField__Label" htmlFor="email">E-Mail Address</label>
                 <input type="email" id="email" className="FormField__Input" placeholder="Enter your email" name="email" value={this.state.email} onChange={this.handleChange} />

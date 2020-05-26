@@ -1,7 +1,8 @@
 var express = require('express');
 // Initialize express router
 var router = express.Router();
-var {fetchUsers,createUser} = require('./user-helper.js');
+var User = require('./user-model.js');
+var {fetchUsers,createUser,loginUser} = require('./user-helper.js');
 
 // get all users
 
@@ -27,6 +28,45 @@ router.post('/', async function(request,response) {
     return response.status(500).send({error: 'something went wrong'});
   }
 });
+
+router.post('/login', async function(request,response) {
+  var email = request.body.email;
+  var password = request.body.password;
+    if (email.length > 0 && password.length > 0) {
+               await User.findOne({email: email, password: password}, function (err, user) {
+                    if (err) {
+                          return response.status(200).send('error');
+                    }
+                    if (!user) {
+                        return response.status(200).send("not found");
+                    }
+                   return response.status(200).send("success");
+                })
+            } else {
+                 return response.status(200).send("Invalid Fields");
+            }
+ /* var logininfo = await loginUser({ email:email, password:password});
+    if() {
+      return response.status(200).send('user successfully login');
+    }
+    else {
+      return response.status(200).send('error login');
+    }
+*/
+      
+      /*  if(logininfo) {
+          return response.status(200).send('this user already exist');
+          console.log('USER LOGIN');
+        } 
+        if (user && user.password === request.body.password){
+          console.log('User and password is correct')
+          response.json(user);
+        } else {
+          console.log("Credentials wrong"); 
+          response.json({data: "Login invalid"});
+        }  */            
+ });
+
 
 
 /*router.get("/", (req, res, next) => {

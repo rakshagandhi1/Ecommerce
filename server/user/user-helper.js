@@ -13,7 +13,14 @@ var createUser = async function(user) {
 	return userInfo;
 };
 
+var loginUser = async function(){
+	console.log('login successfully');
+	var customer = await User.findOne({});
+	return customer;
+}
+
 module.exports = {
 	fetchUsers,
-	createUser
+	createUser,
+	loginUser
 }

@@ -6,6 +6,7 @@ var intiliaseRouter = function intiliaseRouter(app) {
     app.use(express.json());
     app.use(cors());
     app.use('/users' , userRouter);
+     app.use('/login', userRouter);
 }
 
 module.exports = intiliaseRouter;
