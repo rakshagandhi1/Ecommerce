@@ -36,15 +36,9 @@ class SignInForm extends Component {
           "email": this.state.email,
           "password": this.state.password
         }
-        await loginUser(loginData).then(res => {
-          if(res) {
-            console.log('successfully login');
-            alert('successfully login');
-          }
-          else {
-            alert('failed to login!!');
-          }
-        })
+        var response = await loginUser(loginData);
+         console.log(response);
+         alert(JSON.stringify(response)); // for convert the json data into string
         console.log('The form was submitted with the following data:');
         console.log(loginData);
     }

@@ -54,7 +54,9 @@ class SignUpForm extends Component {
         "password" : this.state.password
         };
 
-      await createUser(userData);
+      var response = await createUser(userData);
+      console.log(response);
+      alert(response);
       console.log(userData);
       }
 

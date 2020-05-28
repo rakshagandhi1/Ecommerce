@@ -25,8 +25,8 @@ export async function createUser(createUserData) {
             body: JSON.stringify(createUserData)
         });
         res = await res.json();
-        const userinfo = res.name;
-        return userinfo;
+        //const userinfo = res.name;
+        return res;
     } catch(error) {
         console.log('create user error', error);
         return null;
@@ -46,9 +46,8 @@ export async function loginUser(loginData) {
             body: JSON.stringify(loginData)
      });
      resu = await resu.json();
-     console.log('resu', resu);
-     const logininfo = resu.logininfo;
-     return logininfo;
+    // const logininfo = resu.logininfo;
+     return resu;
    }
    catch(error) {
     console.log('wrong data', error);

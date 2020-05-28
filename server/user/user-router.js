@@ -21,7 +21,8 @@ router.get('/', async function(request,response) {
 router.post('/', async function(request,response) {
   try {
     var userinfo = await createUser(request.body);
-    return response.status(200).send({userinfo:userinfo});
+    //return response.status(200).send({userinfo:userinfo});
+    return response.status(200).send({message:"User created successfully!"});
   }
   catch(error) {
     console.log(error);
@@ -35,15 +36,19 @@ router.post('/login', async function(request,response) {
     if (email.length > 0 && password.length > 0) {
                await User.findOne({email: email, password: password}, function (err, user) {
                     if (err) {
-                          return response.status(200).send('error');
+                          //return response.status(200).send({isLoggedIn: false});
+                          return response.status(200).send({message: "error"});
                     }
                     if (!user) {
-                        return response.status(200).send("not found");
+                       // return response.status(200).send({isLoggedIn: false});
+                        return response.status(200).send({message: "User not found"});
                     }
-                   return response.status(200).send("success");
+                   //return response.status(200).send({isLoggedIn: true});
+                    return response.status(200).send({message: "Login successfully!"});
                 })
             } else {
-                 return response.status(200).send("Invalid Fields");
+                 //return response.status(200).send({isLoggedIn: false});
+                  return response.status(200).send({message: "Invalid Credentials"});
             }
  /* var logininfo = await loginUser({ email:email, password:password});
     if() {
